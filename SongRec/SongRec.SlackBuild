@@ -78,8 +78,19 @@ find -L . \
 
 CFLAGS="$SLKCFLAGS" 
 CXXFLAGS="$SLKCFLAGS" 
+mkdir .cargo
+cat <<EOT >>.cargo/config.toml
+[source.crates-io]
+replace-with = "vendored-sources"
 
-CARGO_INSTALL_ROOT=$PKG/usr/ cargo install songrec
+[source.vendored-sources]
+directory = "vendor"
+EOT
+
+tar -xvf $CWD/vendor.tgz
+cargo build  --frozen --offline --release
+mkdir -p $PKG/usr/bin
+cp target/release/songrec $PKG/usr/bin
 cp -r  packaging/rootfs/usr $PKG
 
 
