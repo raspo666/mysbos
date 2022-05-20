@@ -80,7 +80,12 @@ find -L . \
 
 mkdir build
 cd build
-qmake-qt5 ../JDSP4Linux.pro
+if [ $PULSE == "yes" ]
+then
+    qmake-qt5 ../JDSP4Linux.pro "CONFIG += USE_PULSEAUDIO"
+else
+    qmake-qt5 ../JDSP4Linux.pro
+fi       
 make
 make install DESTDIR=$PKG
 

@@ -1,1 +1,4 @@
 Open-source sound effects for PipeWire and PulseAudio
+to build for pulseaudio only use:
+
+JDSP4Linux: PULSE=yes ./JDSP4Linux.SlackBuild
