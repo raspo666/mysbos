@@ -87,7 +87,6 @@ if [ x"${PULSE}" == "x" ]; then
   fi
 
 make
-make install DESTDIR=$PKG
 
 mkdir -p $PKG/usr/share/applications/
 mkdir -p $PKG/usr/bin
